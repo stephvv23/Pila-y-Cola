@@ -6,25 +6,27 @@ package ucr.ac.cr.pilaycola;
 
 /**
  *
- * @author Usuario
+ * @author Stephanie
  */
-public class Nodo {
-    
+public class Nodo<T> {
+
+    private T dato;
     private Nodo siguiente;
-    private int dato;
 
-    public Nodo() {
-        this.siguiente = null;
-        this.dato = -0;
-    }
-
-    public Nodo(int dato) {
-        this.siguiente = null;
+    public Nodo(T dato) {
         this.dato = dato;
     }
 
-    public Nodo(Nodo siguiente, int dato) {
+    public Nodo(T dato, Nodo siguiente) {
+        this.dato = dato;
         this.siguiente = siguiente;
+    }
+
+    public T getDato() {
+        return dato;
+    }
+
+    public void setDato(T dato) {
         this.dato = dato;
     }
 
@@ -36,12 +38,5 @@ public class Nodo {
         this.siguiente = siguiente;
     }
 
-    public int getDato() {
-        return dato;
-    }
-
-    public void setDato(int dato) {
-        this.dato = dato;
-    }
-
+    
 }

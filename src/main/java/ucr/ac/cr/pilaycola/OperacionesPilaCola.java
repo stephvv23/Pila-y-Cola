@@ -11,8 +11,8 @@ import javax.swing.JOptionPane;
  */
 public class OperacionesPilaCola {
 
-    private Cola colaPrincipal, colaAux, colaOrdenada;
-    private Pila pilaPrincipal, pilaAux, pilaOrdenada;
+    private Cola<Integer> colaPrincipal, colaAux, colaOrdenada;
+    private Pila<Integer> pilaPrincipal, pilaAux, pilaOrdenada;
     private int longitudPila = 10;
     private int longitudCola = 10;
 
@@ -32,28 +32,28 @@ public class OperacionesPilaCola {
         if (!this.colaPrincipal.esVacia()) {
 
             for (int i = 0; i < longitudCola; i++) { //OJO EL MENOR E IGUAL
-                int mayor = this.colaPrincipal.primero();
+                int menor = this.colaPrincipal.primero();
 
                 while (!this.colaPrincipal.esVacia()) {
 
-                    if (this.colaPrincipal.primero() >= mayor) {
+                    if (this.colaPrincipal.primero() <= menor) {
 
-                        mayor = this.colaPrincipal.primero();
+                        menor = this.colaPrincipal.primero();
 
                     }
                     this.colaAux.inserta(this.colaPrincipal.primero());
                     this.colaPrincipal.quitarPrimero();
                 }
 
-                this.colaOrdenada.inserta(mayor);
+                this.colaOrdenada.inserta(menor);
 
                 while (!this.colaAux.esVacia()) {
 
-                    if (this.colaAux.primero() == mayor) {
+                    if (this.colaAux.primero() == menor) {
                         this.colaAux.quitarPrimero();
                     }
 
-                    if (this.colaAux.primero() != -1) {
+                    if (this.colaAux.primero() != null) {
                         this.colaPrincipal.inserta(this.colaAux.primero());//{10}{5}
                     }
                     this.colaAux.quitarPrimero();
@@ -75,7 +75,7 @@ public class OperacionesPilaCola {
     }
 
     public void insertarCola() {
-        this.colaPrincipal.vacia();
+        this.colaPrincipal.anula();
         for (int i = 0; i < 10; i++) {
             this.colaPrincipal.inserta((int) (Math.random() * 99) + 1);
         }
@@ -115,28 +115,28 @@ public class OperacionesPilaCola {
         if (!this.pilaPrincipal.esVacia()) {
 
             for (int i = 0; i < longitudPila; i++) {
-                int mayor = this.pilaPrincipal.cima();
+                int menor = this.pilaPrincipal.cima();
 
                 while (!this.pilaPrincipal.esVacia()) {
 
-                    if (this.pilaPrincipal.cima() >= mayor) {
+                    if (this.pilaPrincipal.cima() <= menor) {
 
-                        mayor = this.pilaPrincipal.cima();
+                        menor = this.pilaPrincipal.cima();
 
                     }
                     this.pilaAux.apila(this.pilaPrincipal.cima());
                     this.pilaPrincipal.desapila();
                 }
 
-                this.pilaOrdenada.apila(mayor);
+                this.pilaOrdenada.apila(menor);
 
                 while (!this.pilaAux.esVacia()) {
 
-                    if (this.pilaAux.cima() == mayor) {
+                    if (this.pilaAux.cima() == menor) {
                         this.pilaAux.desapila();
                     }
 
-                    if (this.pilaAux.cima() != -1) {
+                    if (this.pilaAux.cima() != null) {
                         this.pilaPrincipal.apila(this.pilaAux.cima());//{10}{5}
                     }
                     this.pilaAux.desapila();

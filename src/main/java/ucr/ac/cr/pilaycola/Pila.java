@@ -7,30 +7,34 @@ package ucr.ac.cr.pilaycola;
  *
  * @author Usuario
  */
-public class Pila {
+public class Pila<T> {
 
-    private Nodo cima;
+    private Nodo<T> cima;
 
     public void vacia() {
         cima = null;
     }
  
-    public int cima() {
+    public T cima() {
         if (!esVacia()) {
             return cima.getDato();
         }
-        return -1;
+        return null;
     }
 
-    public void desapila() {
+    public T desapila() {
+        T elemento = null;
         if (!esVacia()) {
+            elemento = cima.getDato();
             cima = cima.getSiguiente();
+            
         }
+        return elemento;
     }
 
-    public void apila(int dato) {
+    public void apila(T dato) {
 
-        Nodo nuevo = new Nodo(dato);
+        Nodo<T> nuevo = new Nodo<T>(dato);
         nuevo.setSiguiente(cima);
         this.cima = nuevo;
     }

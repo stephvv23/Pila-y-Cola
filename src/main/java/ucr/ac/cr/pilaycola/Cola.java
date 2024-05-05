@@ -7,24 +7,24 @@ package ucr.ac.cr.pilaycola;
  *
  * @author Usuario
  */
-public class Cola {
+public class Cola<T> {
 
-    private Nodo primero , ultimo;
+    private Nodo<T> primero , ultimo;
 
-    public void vacia() {
+    public void anula() {
         primero = null;
         ultimo = null;
     }
 
-    public int primero() {
+    public T primero() {
         if (!esVacia()) {
            return primero.getDato();
         } 
-        return -1;
+        return null;
     }
 
-    public void inserta(int dato) {
-        Nodo nuevo = new Nodo(dato);
+    public void inserta(T dato) {
+        Nodo<T> nuevo = new Nodo<T>(dato);
         if (esVacia()) {
             primero = nuevo;
             ultimo = nuevo;
